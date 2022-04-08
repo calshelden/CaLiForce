@@ -1,0 +1,6 @@
+misc/
+research/
+__pycache__/
+.idea/
+*.swp
+*.kate-swp
