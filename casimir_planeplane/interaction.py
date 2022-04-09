@@ -32,7 +32,7 @@ def k0_func_energy(k0, d, epsm_func, rL, rR):
     :param rR: reflection coefficient of the right plate
     :return:
     """
-    f = lambda k: k_integrand_energy(k/d, k0, d, epsm_func(k0 * c), rL, rR)/d
+    f = lambda t: k_integrand_energy(t/d, k0, d, epsm_func(k0 * c), rL, rR)/d
     return quad(f, 0, inf)[0]
 
 def k_integrand_pressure(k, k0, d, epsm, rL, rR):
@@ -65,7 +65,7 @@ def k0_func_pressure(k0, d, epsm_func, rL, rR):
     :param rR: reflection coefficient of the right plate
     :return:
     """
-    f = lambda k: k_integrand_pressure(k / d, k0, d, epsm_func(k0 * c), rL, rR) / d
+    f = lambda t: k_integrand_pressure(t / d, k0, d, epsm_func(k0 * c), rL, rR) / d
     return quad(f, 0, inf)[0]
 
 """

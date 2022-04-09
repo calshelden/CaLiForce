@@ -1,5 +1,5 @@
 import numpy as np
-from psd import psd
+from .psd import psd
 from scipy.constants import k, c, hbar
 
 def psd_sum(T, L, func, epsrel, order=None):
