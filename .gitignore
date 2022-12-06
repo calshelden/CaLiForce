@@ -1,3 +1,7 @@
+casimir_planeplane.egg-info/
+build/
+dist/
+
 misc/
 research/
 __pycache__/
