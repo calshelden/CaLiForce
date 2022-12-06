@@ -68,9 +68,8 @@ def k0_func_pressure(k0, d, epsm_func, rL, rR):
     f = lambda t: k_integrand_pressure(t / d, k0, d, epsm_func(k0 * c), rL, rR) / d
     return quad(f, 0, inf)[0]
 
-"""
-# this is perhaps not relevant at this point
-def k_integrand_forcegradient(k, k0, d, epsm, rL, rR):
+
+def k_integrand_pressuregradient(k, k0, d, epsm, rL, rR):
     kappa = sqrt(epsm * k0 ** 2 + k ** 2)
     rTM_L, rTE_L = rL(k0, k)
     rTM_R, rTE_R = rR(k0, k)
@@ -78,7 +77,6 @@ def k_integrand_forcegradient(k, k0, d, epsm, rL, rR):
     resTM = rTM_L * rTM_R * exp(-2 * kappa * d) / (1 - rTM_L * rTM_R * exp(-2 * kappa * d))**2
     return 4 * k * kappa ** 2 / 2 / pi * (resTE + resTM)
 
-def k0_func_forcegradient(k0, d, epsm_func, rL, rR):
-    f = lambda k: k_integrand_energy(k / d, k0, d, epsm_func(k0 * c), rL, rR) / d
+def k0_func_pressuregradient(k0, d, epsm_func, rL, rR):
+    f = lambda k: k_integrand_pressuregradient(k / d, k0, d, epsm_func(k0 * c), rL, rR) / d
     return quad(f, 0, inf)[0]
-"""

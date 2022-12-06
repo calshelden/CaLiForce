@@ -1,5 +1,5 @@
 from .plane import def_reflection_coeff
-from .interaction import k0_func_energy, k0_func_pressure
+from .interaction import k0_func_energy, k0_func_pressure, k0_func_pressuregradient
 from .frequency_summation import psd_sum, msd_sum
 from scipy.constants import k as kB
 from scipy.constants import pi, c, hbar
@@ -32,8 +32,10 @@ class system:
             func = k0_func_energy
         elif observable == 'pressure':
             func = k0_func_pressure
+        elif observable == 'pressuregradient':
+            func = k0_func_pressuregradient
         else:
-            raise ValueError('Supported values for \'observable\' are either \'energy\' or \'pressure\'!')
+            raise ValueError('Supported values for \'observable\' are either \'energy\', \'pressure\' or \'pressuregradient\'!')
 
         # define reflection coefficients
         rL = def_reflection_coeff(self.matm, self.matL, self.deltaL)
