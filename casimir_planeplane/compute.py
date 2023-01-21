@@ -27,7 +27,7 @@ class system:
         if not len(self.matR) == len(self.deltaR) + 1:
             raise ValueError("A thickness needs to assigned to each coating layer on plate R, i.e. len(matR)=len(deltaR)+1 must hold.")
 
-    def calculate(self, observable, fs='psd', epsrel=1.e-8, N=None):
+    def frequency_function(self, observable):
         if observable == 'energy':
             func = k0_func_energy
         elif observable == 'pressure':
@@ -42,7 +42,11 @@ class system:
         rR = def_reflection_coeff(self.matm, self.matR, self.deltaR)
 
         # define frequency (wave vector) integrand/summand
-        self.f = lambda k0: func(k0, self.d, self.matm.epsilon, rL, rR)
+        return lambda k0: func(k0, self.d, self.matm.epsilon, rL, rR)
+
+    def calculate(self, observable, fs='psd', epsrel=1.e-8, N=None):
+        # define frequency (wave vector) integrand/summand
+        self.f = self.frequency_function(self, observable)
 
         if self.T == 0.:
             # frequency integration
