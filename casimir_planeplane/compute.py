@@ -1,3 +1,4 @@
+import numpy as np
 from .plane import def_reflection_coeff
 from .interaction import k0_func_energy, k0_func_pressure, k0_func_pressuregradient
 from .frequency_summation import psd_sum, msd_sum
@@ -46,11 +47,11 @@ class system:
 
     def calculate(self, observable, fs='psd', epsrel=1.e-8, N=None):
         # define frequency (wave vector) integrand/summand
-        self.f = self.frequency_function(self, observable)
+        self.f = self.frequency_function(observable)
 
         if self.T == 0.:
             # frequency integration
-            t_func = lambda t: self.f(t / self.d) / self.d
+            t_func = lambda t: np.sum(self.f(t / self.d)) / self.d
             return hbar * c / 2 / pi * quad(t_func, 0, inf)[0]
         else:
             # frequency summation
@@ -61,6 +62,8 @@ class system:
             else:
                 raise ValueError('Supported values for fs are either \'psd\' or \'msd\'!')
 
-            self.n0 = 0.5 * self.T * kB * self.f(0.)
-            self.n1 = fsum(self.T, self.d, self.f, epsrel=epsrel, order=N)
+            [self.n0_TE, self.n0_TM] = 0.5 * self.T * kB * self.f(0.)
+            self.n0 = self.n0_TE + self.n0_TM
+            [self.n1_TE, self.n1_TM] = fsum(self.T, self.d, self.f, epsrel=epsrel, order=N)
+            self.n1 = self.n1_TE + self.n1_TM
             return self.n0 + self.n1

@@ -1,8 +1,6 @@
 """
 We caculate the Casimir pressure between two gold halfspaces with a 10 nm coating on one side (where the dielectric function is specified by the user) in ethanol at 300K and separation of 1 micron.
 """
-import sys
-sys.path.append('..')
 from casimir_planeplane.compute import system
 from casimir_planeplane.materials import gold, ethanol
 

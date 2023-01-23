@@ -1,8 +1,6 @@
 """
 We calculate the Casimir energy and pressure between two gold half-spaces in vacuum at 300K and separation of 1 micron.
 """
-import sys
-sys.path.append('..')
 from casimir_planeplane.compute import system
 from casimir_planeplane.materials import gold, vacuum
 

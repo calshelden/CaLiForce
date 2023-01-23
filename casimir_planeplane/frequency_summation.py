@@ -24,7 +24,7 @@ def psd_sum(T, L, func, epsrel, order=None):
 
     """
     K_matsubara = 2 * np.pi * k * T / (hbar * c)
-    res = 0
+    res = np.zeros(2)
     Teff = 4 * np.pi * k / hbar / c * T * L
     if order == None:
         order = int(max(np.ceil((1 - 1.5 * np.log10(np.abs(epsrel))) / np.sqrt(Teff)), 5))
@@ -56,7 +56,7 @@ def msd_sum(T, L, func, epsrel, nmax=None):
 
     """
     K_matsubara = 2 * np.pi * k * T / (hbar * c)
-    res = 0
+    res = np.zeros(2)
     n = 1
     if nmax == None:
         nmax = np.inf
@@ -64,7 +64,8 @@ def msd_sum(T, L, func, epsrel, nmax=None):
     while (n <= nmax):
         term = func(K_matsubara * n)
         res += 2 * term
-        if abs(term / res) < epsrel:
-            break
+        if nmax == np.inf:
+            if abs(term / np.sum(res)) < epsrel:
+                break
         n += 1
     return 0.5*k*T*res

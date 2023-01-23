@@ -3,8 +3,6 @@ We caculate the Casimir pressure between two gold halfspaces in vacuum at 300K a
 We calculate the Casimir pressure between surfaces of varying plasma frequencies.
 """
 import numpy as np
-import sys
-sys.path.append('..')
 from casimir_planeplane.compute import system
 from casimir_planeplane.materials import vacuum
 from scipy.constants import hbar
