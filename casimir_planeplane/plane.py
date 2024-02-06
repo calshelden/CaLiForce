@@ -96,6 +96,7 @@ def kappa(mat, k0, k):
 
 def def_fresnel_coefficients(mat1, mat2):
     def fresnel_coefficients(k0, k):
+        rTM, rTE = 0., 0.
         if mat2.materialclass == "PEC":
             return 1., -1.
         if k0 == 0.:
