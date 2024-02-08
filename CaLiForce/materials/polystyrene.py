@@ -1,3 +1,4 @@
+# from P.J. Zwol, G. Palasantzas, Phys. Rev. A 81, 062502 (2010)
 import numpy as np
 from scipy.constants import e as eV
 from scipy.constants import hbar

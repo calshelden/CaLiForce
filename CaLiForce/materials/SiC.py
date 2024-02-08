@@ -1,6 +1,6 @@
+# from Palik p.588
 from scipy.constants import c, pi
 
-# from Palik p.588
 materialclass = "dielectric"
 cminv_to_radpersec = 2*pi*100*c
 wL = 969*cminv_to_radpersec

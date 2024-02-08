@@ -1,3 +1,4 @@
+# from P.J. Zwol, G. Palasantzas, Phys. Rev. A 81, 062502 (2010)
 import numpy as np
 from scipy.constants import e as eV
 from scipy.constants import hbar
@@ -10,7 +11,7 @@ data = np.array([[9.30e-3, 1.83e-2, 1.39e-1, 1.12e-1, 1.95e-1, 4.38e-1, 1.06e-1,
 C = data[0]
 wi = data[1]*eV/hbar
 
-# from Zwol/Palasantzas
+
 def epsilon(xi):
     return 1 + np.sum(C/(1 + (xi/wi)**2))
 """
