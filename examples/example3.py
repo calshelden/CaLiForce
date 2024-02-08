@@ -1,32 +1,12 @@
-"""
-We caculate the Casimir pressure between two gold halfspaces in vacuum at 300K and separation of 1 micron.
-We calculate the Casimir pressure between surfaces of varying plasma frequencies.
-"""
-import numpy as np
-from casimir_planeplane.compute import system
-from casimir_planeplane.materials import vacuum
-from scipy.constants import hbar
-from scipy.constants import e as eV
+'''
+We calculate the Casimir pressure between two gold halfspaces in vacuum at 300K, where one surfaces is coated with a
+50nm of Teflon film. The plates are separated by a distance of one micron.
+'''
 
-class metal:
-    def __init__(self):
-        self.materialclass = "drude"
-        self.wp = 9 * eV / hbar  # plasma frequency
-        self.gamma = 0.035 * eV / hbar  # damping
-
-    def epsilon(self, xi):
-        return 1.+self.wp**2/xi/(xi+self.gamma)
+from CaLiForce.compute import system
+from CaLiForce.materials import gold, teflon, vacuum
 
 T = 300     # in K
 d = 1.e-6   # in m
-m = metal()
-s = system(T, d, m, m, vacuum)
-print('pressure (gold):',s.calculate('pressure'))
-
-WP = np.linspace(1., 20., 9)
-for wp in WP:
-    m.wp = wp * eV / hbar
-    s = system(T, d, m, m, vacuum)
-    print('pressure (wp = ', wp, 'eV):', s.calculate('pressure'))
-
-
+s = system(300, d, [teflon, gold], gold, vacuum, deltaL=[50.e-9])
+print(s.calculate('pressure'))
