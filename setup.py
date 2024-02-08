@@ -1,13 +1,13 @@
 from setuptools import setup
 
 setup(
-   name='casimir_planeplane',
+   name='CaLiForce',
    version='0.0.0',
    author='Benjamin Spreng',
    author_email='sprengjamin@gmail.com',
-   packages=['casimir_planeplane', 'casimir_planeplane/materials'],
-   license='LICENSE.txt',
-   description='Casimir interaction involving two planes',
-   long_description=open('README.txt').read(),
+   packages=['CaLiForce', 'CaLiForce/materials'],
+   license='LICENSE',
+   description='Casimir interaction between two planes',
+   long_description=open('README.md').read(),
    install_requires=[],
 )
