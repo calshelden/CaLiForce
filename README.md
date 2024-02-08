@@ -47,6 +47,9 @@ Based on Lifshitz formula, this package calculates the Casimir-Lifshitz interact
 The results can nevertheless be applied to finite plates when their separation is much smaller than their lateral 
 dimension by multiplying the here obtained resul ts by their area A.
 
+In the following the usage of the code is discussed. The given examples can be found amongst other examples as python scripts
+in the `examples/` folder.
+
 ### Example 1 (two gold half spaces in vacuum)
 
 As a first example, we calculate the Casimir energy and pressure between two gold half-spaces in vacuum at 300K and
