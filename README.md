@@ -85,7 +85,7 @@ which results in:
 >>> -0.0009832292489922454
 ```
 The code prints the result for the Casimir free energy per unit area and the Casimir pressure in SI units.
-We find -0.317nJ/m^2 and 0.983mPa, respectively. The negative sign of the pressure indicates that the force between the
+We find -0.317nJ/m^2 and -0.983mPa, respectively. The negative sign of the pressure indicates that the force between the
 plates is attractive.
 
 ### Example 2 (user-specified material)
@@ -166,5 +166,5 @@ which results in:
 ```
 >>> -0.0008397921324708965
 ```
-We find a attractive Casimir pressure of -0.840Pa. Notice that the Casimir pressure is slightly smaller than the one
+We find a attractive Casimir pressure of -0.840mPa. Notice that the Casimir pressure is slightly smaller than the one
 obtained from example 1 due to the coating.
