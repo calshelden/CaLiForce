@@ -2,6 +2,23 @@ from math import sqrt, exp
 from scipy.constants import c
 
 def def_reflection_coeff(medium, materials, thicknesses):
+    """
+    Define reflection coefficients of the plane by specifying medium and materials of the plane and thickness of the
+    coating layers.
+
+    Parameters
+    ----------
+    medium : object
+    materials : list of objects
+    thicknesses : list of floats
+
+    Returns
+    -------
+    function(float, float)->(float, float)
+        reflection coefficients taking vacuum wavenumber k0 and in-plane wave number k and returning the values of the
+        reflection coefficients for TM and TE polarization, respectively
+
+    """
     Nlayers = len(materials)
     
     if Nlayers == 1:
@@ -95,6 +112,22 @@ def kappa(mat, k0, k):
 
 
 def def_fresnel_coefficients(mat1, mat2):
+    """
+    Defines Fresnel reflection coefficients for a halfspace.
+
+    Parameters
+    ----------
+    mat1 : object
+        material representing the medium from which the planewave is incident
+    mat2 : object
+        material of the halfspace
+
+    Returns
+    -------
+    function(float, float)->(float, float)
+        reflection coefficients taking vacuum wavenumber k0 and in-plane wave number k and returning the values of the
+        reflection coefficients for TM and TE polarization, respectively
+    """
     def fresnel_coefficients(k0, k):
         rTM, rTE = 0., 0.
         if mat2.materialclass == "PEC":

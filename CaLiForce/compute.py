@@ -8,7 +8,27 @@ from scipy.integrate import quad
 from math import inf
 
 class system:
+    '''Class that defines the system of two parallel plates.
+    '''
     def __init__(self, T, d, matL, matR, matm, deltaL=[], deltaR=[]):
+        '''
+        System parameters are defined and initialized.
+
+        Parameters
+        ----------
+        T : float
+            Temperature in K
+        d : float
+            Separation in m
+        matL, matR: object or list objects
+            Material of left and right plate, respectively. If specified as a list, the first material corresponds to
+            the coating facing the medium and so on. The list can contain up to 4 materials.
+        matm : object
+            Material of medium
+        deltaL, deltaR : list
+            Thicknesses of the coating layers with the first one corresponding to the thickness of the coating facing
+            the medium and so on.
+        '''
         self.T = T
         self.d = d
         if not isinstance(matL, list):
@@ -24,11 +44,24 @@ class system:
         self.matm = matm
 
         if not len(self.matL) == len(self.deltaL) + 1:
-            raise ValueError("A thickness needs to assigned to each coating layer on plate L, i.e. len(matL)=len(deltaL)+1 must hold.")
+            raise ValueError("A thickness needs to be assigned to each coating layer on plate L, i.e. len(matL)=len(deltaL)+1 must hold.")
         if not len(self.matR) == len(self.deltaR) + 1:
-            raise ValueError("A thickness needs to assigned to each coating layer on plate R, i.e. len(matR)=len(deltaR)+1 must hold.")
+            raise ValueError("A thickness needs to be assigned to each coating layer on plate R, i.e. len(matR)=len(deltaR)+1 must hold.")
 
     def frequency_function(self, observable):
+        '''
+        Defines the frequency summand or integrand within Lifshitz formula based on the specified observable.
+
+        Parameters
+        ----------
+        observable : str
+            either 'energy', 'pressure' or 'pressuregradient'
+
+        Returns
+        -------
+        function
+
+        '''
         if observable == 'energy':
             func = k0_func_energy
         elif observable == 'pressure':
@@ -46,7 +79,27 @@ class system:
         return lambda k0: func(k0, self.d, self.matm.epsilon, rL, rR)
 
     def calculate(self, observable, fs='psd', epsrel=1.e-8, N=None):
-        # define frequency (wave vector) integrand/summand
+        '''
+        Calculate the Casimir interaction according to the specified observable.
+
+        Parameters
+        ----------
+        observable : str
+            either 'energy', 'pressure' or 'pressuregradient'
+        fs : str
+            Method to be used to calculate the Matsubara frequency summation. Can be set to 'msd' (conventional summation)
+            or 'psd' (Pade spectrum decomposition). Default: 'psd'
+        epsrel : float
+            Target precision for frequency summation
+        N : int
+            Number of terms in the frequency summation. By default, `N=None` and the number is determined automatically
+            based on the value of `epsrel`.
+
+        Returns
+        -------
+        float
+            the value of the Casimir interaction
+        '''
         self.f = self.frequency_function(observable)
 
         if self.T == 0.:
