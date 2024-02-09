@@ -130,7 +130,7 @@ def def_fresnel_coefficients(mat1, mat2):
     """
     def fresnel_coefficients(k0, k):
         rTM, rTE = 0., 0.
-        if mat2.materialclass == "PEC":
+        if mat2.materialclass == "pec":
             return 1., -1.
         if k0 == 0.:
             if mat1.materialclass == "dielectric":
