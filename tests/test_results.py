@@ -1,7 +1,9 @@
 from CaLiForce.compute import system
-from CaLiForce.materials import pec, vacuum
-from scipy.constants import hbar, c, pi
+from CaLiForce.materials import gold, pec, vacuum
+from scipy.constants import hbar, c, pi, k
 from numpy.testing import assert_allclose
+
+zeta3 = 1.2020569031595942
 
 def cas_energy(d):
     # Casmir's result for energy at T=0
@@ -24,8 +26,15 @@ def test_pec():
     assert_allclose(s.calculate('pressuregradient'), cas_pressuregradient(d))
 
 def test_zero_frequency():
+    d = 100.e-9
+    s = system(1/k, d, pec, pec, vacuum)
+    # analytical result from: Bordag et al., Advances in the Casimir effect (Oxford University press, 2009), Eq. (14.5)
+    assert_allclose(s.calculate('energy', ht_limit=True), -zeta3/8/pi/d**2)
 
-
+    d = 100.e-9
+    s = system(1 / k, d, gold, gold, vacuum)
+    # analytical result from: Bordag et al., Advances in the Casimir effect (Oxford University press, 2009), Eq. (14.7)
+    assert_allclose(s.calculate('energy', ht_limit=True), -zeta3 / 16 / pi / d ** 2)
 
 if __name__ == '__main__':
     test_pec()

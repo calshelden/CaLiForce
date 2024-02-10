@@ -78,7 +78,7 @@ class system:
         # define frequency (wave vector) integrand/summand
         return lambda k0: func(k0, self.d, self.matm.epsilon, rL, rR)
 
-    def calculate(self, observable, fs='psd', epsrel=1.e-8, N=None):
+    def calculate(self, observable, ht_limit=False, fs='psd', epsrel=1.e-8, N=None):
         '''
         Calculate the Casimir interaction according to the specified observable.
 
@@ -86,6 +86,8 @@ class system:
         ----------
         observable : str
             either 'energy', 'pressure' or 'pressuregradient'
+        ht_limit : bool
+            if set True, the high-temperature limit corresponding to the zero-frequency contribution only is calculated
         fs : str
             Method to be used to calculate the Matsubara frequency summation. Can be set to 'msd' (conventional summation)
             or 'psd' (Pade spectrum decomposition). Default: 'psd'
@@ -117,6 +119,7 @@ class system:
 
             [self.n0_TE, self.n0_TM] = 0.5 * self.T * kB * self.f(0.)
             self.n0 = self.n0_TE + self.n0_TM
+            if ht_limit: return self.n0
             [self.n1_TE, self.n1_TM] = fsum(self.T, self.d, self.f, epsrel=epsrel, order=N)
             self.n1 = self.n1_TE + self.n1_TM
             return self.n0 + self.n1
