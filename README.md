@@ -1,6 +1,6 @@
-# CaLiForce
+# califorcia
 
-**CaLiForce** is a package designed for the precise calculation of the **Ca**simir-**Li**fshitz Force between two dielectric plates.
+**califorcia** is a package designed for the precise calculation of the **Ca**simir-**Li**fshitz **Forc**e between two dielectric plates.
 Utilizing Lifshitz' formula, this tool enables scientists and researchers to explore the fascinating quantum mechanical 
 effects that manifest at microscopic separations. The Casimir-Lifshitz force, a pivotal phenomenon in quantum field theory, 
 arises from the quantum fluctuations of the electromagnetic field in the vacuum between two materials. This force plays a 

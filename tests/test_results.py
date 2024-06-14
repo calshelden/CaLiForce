@@ -1,5 +1,5 @@
-from CaLiForce.compute import system
-from CaLiForce.materials import gold, pec, vacuum
+from califorcia.compute import system
+from califorcia.materials import gold, pec, vacuum
 from scipy.constants import hbar, c, pi, k
 from numpy.testing import assert_allclose
 

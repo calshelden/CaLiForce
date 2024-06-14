@@ -1,11 +1,11 @@
 from setuptools import setup
 
 setup(
-   name='CaLiForce',
+   name='califorcia',
    version='0.0.0',
    author='Benjamin Spreng',
    author_email='sprengjamin@gmail.com',
-   packages=['CaLiForce', 'CaLiForce/materials'],
+   packages=['califorcia', 'califorcia/materials'],
    license='LICENSE',
    description='Casimir interaction between two planes',
    long_description=open('README.md').read(),

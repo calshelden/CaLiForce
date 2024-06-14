@@ -2,8 +2,8 @@
 We calculate the Casimir pressure between a gold halfspace and a halfspace made of a user-specified material.
 The whole system is immersed in ethanol at 300K and the two plates are separated by 100nm.
 """
-from CaLiForce.compute import system
-from CaLiForce.materials import gold, ethanol
+from califorcia.compute import system
+from califorcia.materials import gold, ethanol
 
 class user_material:
     def __init__(self):

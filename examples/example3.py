@@ -3,8 +3,8 @@ We calculate the Casimir pressure between two gold halfspaces in vacuum at 300K,
 50nm of Teflon film. The plates are separated by a distance of one micron.
 '''
 
-from CaLiForce.compute import system
-from CaLiForce.materials import gold, teflon, vacuum
+from califorcia.compute import system
+from califorcia.materials import gold, teflon, vacuum
 
 T = 300     # in K
 d = 1.e-6   # in m
