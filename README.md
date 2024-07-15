@@ -19,9 +19,9 @@ Our package offers a robust set of features, including:
 
 ## Installation
 
-In order to install CaLiForce, first navigate to package folder
+In order to install califorcia, first navigate to package folder
 ```
-cd path/to/CaLiForce
+cd path/to/califorcia
 ```
 If you do not wish to install the package into your base python library, you may want to create a [virtual environment](https://docs.python.org/3/tutorial/venv.html) before installing the package. A virtual environment can be created with
 ```
@@ -58,8 +58,8 @@ separation of 1 micron.
 To do so, we import the `system` class which contains all relevant parameters specifying the system of interest and
 import the materials we want to use:
 ```
-from CaLiForce.compute import system
-from CaLiForce.materials import gold, vacuum
+from califorcia.compute import system
+from califorcia.materials import gold, vacuum
 ```
 Notice that the imported material class for gold is described by a simple Drude model characterized by a angular plasma
 frequency of 9eV/hbar and angular damping frequency of 35meV/hbar.
@@ -95,8 +95,8 @@ The whole system is immersed in ethanol at 300K and the two plates are separated
 
 Again, we import the `system` class and the material classes for `gold` and `enthanol`: 
 ```
-from CaLiForce.compute import system
-from CaLiForce.materials import gold, ethanol
+from califorcia.compute import system
+from califorcia.materials import gold, ethanol
 ```
 We then define the user-specified material:
 ```
@@ -144,8 +144,8 @@ We calculate the Casimir pressure between two gold halfspaces in vacuum at 300K,
 
 Again, we import the `system` class and the predefined materials `gold`, `teflon` and `vacuum`and define the system:
 ```
-from CaLiForce.compute import system
-from CaLiForce.materials import gold, teflon, vacuum
+from califorcia.compute import system
+from califorcia.materials import gold, teflon, vacuum
 
 T = 300     # in K
 d = 1.e-6   # in m
